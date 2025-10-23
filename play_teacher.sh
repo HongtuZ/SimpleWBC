@@ -1,10 +1,10 @@
 
 # bash eval_teacher.sh 0927_twist_teacher
 
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES=0
 
-task_name="g1_priv_mimic"
-proj_name="g1_priv_mimic"
+task_name="orca_priv_mimic"
+proj_name="orca_priv_mimic"
 exptid=$1
 
 cd legged_gym/legged_gym/scripts

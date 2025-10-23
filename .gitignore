@@ -34,3 +34,8 @@ retarget_lib/
 body_models/
 
 joao_data/
+
+motion_dataset/
+test.py
+
+.DS_Store

@@ -63,7 +63,7 @@ class HumanoidMimic(HumanoidChar):
         self._init_motion_buffers()
         
     def _load_motions(self):
-        self._motion_lib = MotionLib(motion_file=self.cfg.motion.motion_file, device=self.device)
+        self._motion_lib = MotionLib(motion_file=self.cfg.motion.motion_file, body_names=self.body_names, dof_names=self.dof_names, device=self.device)
         return
     
     def _init_motion_buffers(self):
@@ -431,7 +431,8 @@ class HumanoidMimic(HumanoidChar):
     
     # ================== rewards ==================
     def _reward_alive(self):
-        return 1.
+        
+        return self.total_env_steps_counter<100000
     
     def _reward_tracking_joint_dof(self):
         dof_diff = self._ref_dof_pos - self.dof_pos
@@ -537,6 +538,7 @@ class HumanoidMimic(HumanoidChar):
             # tar_key_body_pos = convert_to_local_root_body_pos(self._ref_root_rot, tar_key_body_pos)
             tar_key_body_pos = convert_to_local_root_body_pos(ref_yaw_quat, tar_key_body_pos)
         key_body_pos_diff = key_body_pos - tar_key_body_pos
+        key_body_pos_diff = key_body_pos_diff[:,[1,2,4,5,7,8,10,11]]
         key_body_pos_err = torch.sum(key_body_pos_diff * key_body_pos_diff, dim=-1)
         key_body_pos_err = torch.sum(key_body_pos_err, dim=-1)
         

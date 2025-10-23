@@ -12,9 +12,9 @@ teacher_exptid=${2}
 
 device=${3}
 
-task_name="g1_stu_rl"
+task_name="orca_stu_rl"
 
-proj_name="g1_stu_rl"
+proj_name="orca_stu_rl"
 
 cd legged_gym/legged_gym/scripts
 

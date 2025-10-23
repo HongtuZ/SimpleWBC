@@ -1,5 +1,6 @@
 import os, pickle, yaml
 import logging
+import joblib
 
 import torch
 
@@ -21,8 +22,10 @@ def smooth(x, box_pts, device):
 
 
 class MotionLib:
-    def __init__(self, motion_file, device):
+    def __init__(self, motion_file, body_names, dof_names, device):
         self._device = device
+        self.body_names = body_names
+        self.dof_names = dof_names
         self._load_motions(motion_file)
         
     def _load_motions(self, motion_file):
@@ -52,18 +55,25 @@ class MotionLib:
             self._motion_names.append(os.path.basename(curr_file))
             try:
                 with open(curr_file, "rb") as f:
-                    motion_data = pickle.load(f)
+                    motion_data = joblib.load(f)
                     
                     fps = motion_data["fps"]
+                    body_names = motion_data["link_body_list"]
+                    dof_names = motion_data["dof_list"]
+                    if set(dof_names) != set(self.dof_names):
+                        raise ValueError(f"DOF names in motion file {curr_file} do not match the expected DOF names.")
+
+                    dof_idx = [dof_names.index(name) for name in self.dof_names]
+
                     curr_weight = motion_weights[i]
                     dt = 1.0 / fps
                     
                     root_pos = torch.tensor(motion_data["root_pos"], dtype=torch.float, device=self._device)
                     root_rot = torch.tensor(motion_data["root_rot"], dtype=torch.float, device=self._device)
-                    dof_pos = torch.tensor(motion_data["dof_pos"], dtype=torch.float, device=self._device)
+                    dof_pos = torch.tensor(motion_data["dof_pos"], dtype=torch.float, device=self._device)[:, dof_idx]
                     local_body_pos = torch.tensor(motion_data["local_body_pos"], dtype=torch.float, device=self._device)
                     if i == 0:
-                        self._body_link_list = motion_data["link_body_list"]
+                        self._body_link_list = body_names
                     
                     num_frames = root_pos.shape[0]
                     curr_len = dt * (num_frames - 1)
