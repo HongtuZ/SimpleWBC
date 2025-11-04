@@ -36,7 +36,7 @@ from rich import print
 # from torch.utils.tensorboard import SummaryWriter
 import torch
 import torch.optim as optim
-import wandb
+from torch.utils.tensorboard import SummaryWriter
 # import ml_runlog
 import datetime
 
@@ -57,7 +57,6 @@ class OnPolicyRunnerMimic:
                  env: VecEnv,
                  train_cfg,
                  log_dir=None,
-                 init_wandb=True,
                  device='cpu', **kwargs):
 
         self.cfg=train_cfg["runner"]
@@ -126,7 +125,7 @@ class OnPolicyRunnerMimic:
             
         # Log
         self.log_dir = log_dir
-        self.writer = None
+        self.writer = SummaryWriter(log_dir) if log_dir is not None else None
         self.tot_timesteps = 0
         self.tot_time = 0
         self.current_learning_iteration = 0
@@ -314,7 +313,9 @@ class OnPolicyRunnerMimic:
             # wandb_dict['Train/mean_reward/time', statistics.mean(locs['rewbuffer']), self.tot_time)
             # wandb_dict['Train/mean_episode_length/time', statistics.mean(locs['lenbuffer']), self.tot_time)
 
-        wandb.log(wandb_dict, step=locs['it'])
+        if self.writer is not None:
+            for k, v in wandb_dict.items():
+                self.writer.add_scalar(k, v, locs['it'])
 
         str = f" \033[1m Learning iteration {locs['it']}/{self.current_learning_iteration + locs['num_learning_iterations']} \033[0m "
 

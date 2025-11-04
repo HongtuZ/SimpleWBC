@@ -36,7 +36,6 @@ from legged_gym.envs import *
 from legged_gym.gym_utils import get_args, task_registry
 
 import torch
-import wandb
 
 def train(args):
     args.headless = True
@@ -48,27 +47,10 @@ def train(args):
         pass
     
     if args.debug:
-        mode = "disabled"
         args.rows = 10
         args.cols = 5
         args.num_envs = 32
         args.headless = False
-    else:
-        mode = "online"
-    
-    if args.no_wandb:
-        mode = "disabled"
-        
-    robot_type = args.task.split("_")[0]
-    
-    wandb_project = f"{robot_type}_mimic"
-    wandb.init(project=wandb_project, name=args.exptid, mode=mode, dir="../../logs")
-    # wandb.save(LEGGED_GYM_ENVS_DIR + "/base/legged_robot_config.py", policy="now")
-    # wandb.save(LEGGED_GYM_ENVS_DIR + "/base/legged_robot.py", policy="now")
-    # wandb.save(LEGGED_GYM_ENVS_DIR + "/base/humanoid_config.py", policy="now")
-    # wandb.save(LEGGED_GYM_ENVS_DIR + "/base/humanoid.py", policy="now")
-    if robot_type == "g1":
-        wandb.save(LEGGED_GYM_ENVS_DIR + "/g1/g1_mimic_distill_config.py", policy="now")
     
     env, _ = task_registry.make_env(name=args.task, args=args)
     ppo_runner, train_cfg = task_registry.make_alg_runner(log_root=log_pth, env=env, name=args.task, args=args)

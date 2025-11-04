@@ -39,3 +39,5 @@ motion_dataset/
 test.py
 
 .DS_Store
+twist_dataset/
+.venv

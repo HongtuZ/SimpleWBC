@@ -7,8 +7,8 @@ cd legged_gym/legged_gym/scripts
 
 exptid=$1
 teacher_exptid=$2
-task_name="g1_stu_rl"
-proj_name="g1_stu_rl"
+task_name="orca_stu_rl"
+proj_name="orca_stu_rl"
 
 
 # Run the eval script
@@ -17,4 +17,5 @@ python play.py --task "${task_name}" \
                 --exptid "${exptid}" \
                 --num_envs 1 \
                 --teacher_exptid "${teacher_exptid}" \
-                --record_video \
+                --use_jit \
+                # --record_video \

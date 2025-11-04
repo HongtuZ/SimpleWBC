@@ -62,7 +62,7 @@ class HardwareRefNN(nn.Module):
         self.normalizer = normalizer
 
     def forward(self, obs):
-        assert obs.shape[1] == self.num_obs, f"Expected {self.num_obs} but got {obs.shape[1]}"
+        # assert obs.shape[1] == self.num_obs, f"Expected {self.num_obs} but got {obs.shape[1]}"
         obs = self.normalizer.normalize(obs)
         return self.actor(obs)
     
@@ -107,8 +107,8 @@ def play(args):
     policy.load_normalizer(ac_state_dict['normalizer'])
     
     policy = policy.to(device)#.cpu()
-    if not os.path.exists(os.path.join(load_run, "traced")):
-        os.mkdir(os.path.join(load_run, "traced"))
+    if not os.path.exists(os.path.join(load_run, "onnx")):
+        os.mkdir(os.path.join(load_run, "onnx"))
 
     # Save the traced actor
     policy.eval()
@@ -117,13 +117,23 @@ def play(args):
         
         obs_input = torch.ones(num_envs, num_observations, device=device)
         print("obs_input shape: ", obs_input.shape)
-        
-        traced_policy = torch.jit.trace(policy, obs_input)
-        
-        # traced_policy = torch.jit.script(policy)
-        save_path = os.path.join(load_run, "traced", args.exptid + "-" + str(checkpoint) + "-jit.pt")
-        traced_policy.save(save_path)
-        cprint(f"Saved traced_actor at {os.path.abspath(save_path)}", "green")
+        save_path = os.path.join(load_run, "onnx", args.exptid + "-" + str(checkpoint) + ".onnx")
+
+        torch.onnx.export(
+            policy,
+            obs_input,
+            save_path,
+            export_params=True,
+            do_constant_folding=True,
+            input_names=['obs'],
+            output_names=['action'],
+            dynamic_axes={
+                'obs': {0: 'batch_size'},
+                'action': {0: 'batch_size'}
+            }
+            
+        )
+        cprint(f"Saved onnx actor at {os.path.abspath(save_path)}", "green")
         cprint(f"Robot: {args.robot}", "green")
 
 if __name__ == "__main__":

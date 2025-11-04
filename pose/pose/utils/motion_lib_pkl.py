@@ -22,7 +22,7 @@ def smooth(x, box_pts, device):
 
 
 class MotionLib:
-    def __init__(self, motion_file, body_names, dof_names, device):
+    def __init__(self, motion_file, device, body_names=None, dof_names=None):
         self._device = device
         self.body_names = body_names
         self.dof_names = dof_names
@@ -59,21 +59,23 @@ class MotionLib:
                     
                     fps = motion_data["fps"]
                     body_names = motion_data["link_body_list"]
-                    dof_names = motion_data["dof_list"]
-                    if set(dof_names) != set(self.dof_names):
-                        raise ValueError(f"DOF names in motion file {curr_file} do not match the expected DOF names.")
-
-                    dof_idx = [dof_names.index(name) for name in self.dof_names]
-
                     curr_weight = motion_weights[i]
                     dt = 1.0 / fps
                     
                     root_pos = torch.tensor(motion_data["root_pos"], dtype=torch.float, device=self._device)
                     root_rot = torch.tensor(motion_data["root_rot"], dtype=torch.float, device=self._device)
-                    dof_pos = torch.tensor(motion_data["dof_pos"], dtype=torch.float, device=self._device)[:, dof_idx]
+                    dof_pos = torch.tensor(motion_data["dof_pos"], dtype=torch.float, device=self._device)
                     local_body_pos = torch.tensor(motion_data["local_body_pos"], dtype=torch.float, device=self._device)
                     if i == 0:
                         self._body_link_list = body_names
+
+                    dof_names = motion_data.get("dof_list", None)
+                    if dof_names is not None and self.dof_names is not None:
+                        if set(dof_names) != set(self.dof_names):
+                            raise ValueError(f"DOF names in motion file {curr_file} do not match the expected DOF names.")
+                        dof_idx = [dof_names.index(name) for name in self.dof_names]
+                        dof_pos = dof_pos[:, dof_idx]
+
                     
                     num_frames = root_pos.shape[0]
                     curr_len = dt * (num_frames - 1)

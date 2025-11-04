@@ -48,8 +48,8 @@ class OrcaMimicPrivCfg(HumanoidMimicCfg):
         dof_err_w = [1.0, 0.8, 0.8, 1.0, 0.5, 0.5, # Left Leg
                      1.0, 0.8, 0.8, 1.0, 0.5, 0.5, # Right Leg
                      0.6, 0,0,0,# waist yaw, head, 
-                     0.8, 0.8, 0.8, 1.0,0,0, # Left Arm
-                     0.8, 0.8, 0.8, 1.0, 0,0,# Right Arm
+                     0.8, 0.8, 0.8, 1.0,1,1, # Left Arm
+                     0.8, 0.8, 0.8, 1.0,1,1,# Right Arm
                      ]
         
 
@@ -213,7 +213,7 @@ class OrcaMimicPrivCfg(HumanoidMimicCfg):
             # tracking_keybody_pos = 0.6
             tracking_keybody_pos = 2.0
             
-            alive = 0.5
+            # alive = 0.5
 
             feet_slip = -0.1
             feet_contact_forces = -5e-4      
@@ -258,7 +258,7 @@ class OrcaMimicPrivCfg(HumanoidMimicCfg):
         max_contact_force = 100  # Forces above this value are penalized
         soft_torque_limit = 0.95
         torque_safety_limit = 0.9
-        root_height_diff_threshold = 0.3
+        root_height_diff_threshold = 0.2
 
     class domain_rand:
         domain_rand_general = True # manually set this, setting from parser does not work;
@@ -309,7 +309,7 @@ class OrcaMimicPrivCfg(HumanoidMimicCfg):
         #upper_key_bodies = ["larm_link6", "rarm_link6", "larm_link4", "rarm_link4", "head_link3"]
         key_bodies = ['larm_link2', 'larm_link4', 'larm_link6', 'rarm_link2', 'rarm_link4', 'rarm_link6', 'lleg_link1', 'lleg_link4', 'lleg_link6', 'rleg_link1', 'rleg_link4', 'rleg_link6'] # 12 key bodies
         upper_key_bodies = ['larm_link2', 'larm_link4', 'larm_link6', 'rarm_link2', 'rarm_link4', 'rarm_link6']
-        motion_file = f"{LEGGED_GYM_ROOT_DIR}/motion_data/0005_Walking001_stageii.pkl"
+        motion_file = f"{LEGGED_GYM_ROOT_DIR}/motion_data/0018_Catwalk001_stageii.pkl"
         # motion_file = f"{LEGGED_GYM_ROOT_DIR}/motion_data_configs/motion_dataset.yaml"
         reset_consec_frames = 30
         height_offset = 0.1
@@ -442,7 +442,7 @@ class OrcaMimicStuRLCfg(OrcaMimicPrivCfg):
         max_contact_force = 100  # Forces above this value are penalized
         soft_torque_limit = 0.95
         torque_safety_limit = 0.9
-        root_height_diff_threshold = 0.3
+        root_height_diff_threshold = 0.2
 
 class OrcaMimicPrivCfgPPO(HumanoidMimicCfgPPO):
     seed = 1
@@ -505,7 +505,7 @@ class OrcaMimicStuRLCfgDAgger(OrcaMimicStuRLCfg):
         checkpoint = -1
         resume_path = None
         
-        teacher_experiment_name = 'orca_teacher_trial4'
+        teacher_experiment_name = 'orca_tacher'
         teacher_proj_name = 'orca_priv_mimic'
         teacher_checkpoint = -1
         eval_student = False
