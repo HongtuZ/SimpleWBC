@@ -1,4 +1,4 @@
-root_path: /home/robot/hongtu/TWIST/motion_dataset 
+root_path: /data/zhouhongtu/SimpleWBC/motion_dataset/retargeted_data
 motions:
 - description: general movement
   file: ACCAD/Female1General_c3d/A10_-_lie_to_crouch_stageii.pkl

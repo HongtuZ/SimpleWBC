@@ -8,7 +8,7 @@ class OrcaMimicPrivCfg(HumanoidMimicCfg):
         
         num_envs = 4096
         num_actions = 28
-        num_key_bodies = 12
+        num_key_bodies = 8
         obs_type = 'priv' # 'student'
         n_priv_latent = 4 + 1 + 2*num_actions
         extra_critic_obs = 3 # 没用？
@@ -307,150 +307,40 @@ class OrcaMimicPrivCfg(HumanoidMimicCfg):
         motion_curriculum_gamma = 0.01
         #key_bodies = ["larm_link6", "rarm_link6", "lleg_link6", "rleg_link6", "lleg_link4", "rleg_link4", "larm_link4", "rarm_link4", "head_link3"] # 9 key bodies
         #upper_key_bodies = ["larm_link6", "rarm_link6", "larm_link4", "rarm_link4", "head_link3"]
-        key_bodies = ['larm_link2', 'larm_link4', 'larm_link6', 'rarm_link2', 'rarm_link4', 'rarm_link6', 'lleg_link1', 'lleg_link4', 'lleg_link6', 'rleg_link1', 'rleg_link4', 'rleg_link6'] # 12 key bodies
-        upper_key_bodies = ['larm_link2', 'larm_link4', 'larm_link6', 'rarm_link2', 'rarm_link4', 'rarm_link6']
-        motion_file = f"{LEGGED_GYM_ROOT_DIR}/motion_data/0018_Catwalk001_stageii.pkl"
-        # motion_file = f"{LEGGED_GYM_ROOT_DIR}/motion_data_configs/motion_dataset.yaml"
+        key_bodies = ['larm_link4', 'larm_link6', 'rarm_link4', 'rarm_link6', 'lleg_link4', 'lleg_link6', 'rleg_link4', 'rleg_link6'] # 8 key bodies
+        upper_key_bodies = ['larm_link4', 'larm_link6', 'rarm_link4', 'rarm_link6']
+        # motion_file = f"{LEGGED_GYM_ROOT_DIR}/../motion_dataset/0005_Walking001_stageii.pkl"
+        motion_file = f"{LEGGED_GYM_ROOT_DIR}/motion_data_configs/motion_dataset.yaml"
         reset_consec_frames = 30
         height_offset = 0.1
     
-
-class OrcaMimicStuCfg(OrcaMimicPrivCfg):
-    class env(OrcaMimicPrivCfg.env):
-        tar_obs_steps = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45,
-                         50, 55, 60, 65, 70, 75, 80, 85, 90, 95,]
-        
-        num_envs = 4096
-        num_actions = 28
-        num_key_bodies = 12
-        obs_type = 'student'
-        n_priv_latent = 4 + 1 + 2*num_actions
-        extra_critic_obs = 3
-        n_priv = 0
-        
-        n_proprio = 3 + 2 + 3*num_actions
-        n_priv_mimic_obs = len(tar_obs_steps) * (8 + num_actions + 3*num_key_bodies) # Hardcode for now, 12 is the number of key bodies
-        n_mimic_obs = 8 + 28 # 23 for dof pos
-
-        n_priv_info = 3 + 1 + 3*num_key_bodies + 2 + 4 + 1 + 2*num_actions # base lin vel, root height, key body pos, contact mask, priv latent
-        history_len = 10
-        
-        n_obs_single = n_mimic_obs + n_proprio
-        n_priv_obs_single = n_priv_mimic_obs + n_proprio + n_priv_info
-        
-        num_observations = n_obs_single * (history_len + 1)
-
-        num_privileged_obs = n_priv_obs_single
-
 class OrcaMimicStuRLCfg(OrcaMimicPrivCfg):
     class env(OrcaMimicPrivCfg.env):
-        tar_obs_steps = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45,
-                         50, 55, 60, 65, 70, 75, 80, 85, 90, 95,]
-        
         num_envs = 4096
         num_actions = 28
-        num_key_bodies = 12
+
         obs_type = 'student'
-        n_priv_latent = 4 + 1 + 2*num_actions
-        extra_critic_obs = 3
-        n_priv = 0
         
         n_proprio = 3 + 2 + 3*num_actions
-        n_priv_mimic_obs = len(tar_obs_steps) * (8 + num_actions + 3*num_key_bodies) # Hardcode for now, 12 is the number of key bodies
-        n_mimic_obs = 8 + 28 # 23 for dof pos
-        
-        n_priv_info = 3 + 1 + 3*num_key_bodies + 2 + 4 + 1 + 2*num_actions # base lin vel, root height, key body pos, contact mask, priv latent
+        n_mimic_obs = 8 + 28 # 28 for dof pos
+
         history_len = 10
-        
         n_obs_single = n_mimic_obs + n_proprio
-        n_priv_obs_single = n_priv_mimic_obs + n_proprio + n_priv_info
-        
         num_observations = n_obs_single * (history_len + 1)
 
-        num_privileged_obs = n_priv_obs_single
     
     class rewards(HumanoidMimicCfg.rewards):
-        regularization_names = [
-                        # "feet_stumble",
-                        # "feet_contact_forces",
-                        # "lin_vel_z",
-                        # "ang_vel_xy",
-                        # "orientation",
-                        # "dof_pos_limits",
-                        # "dof_torque_limits",
-                        # "collision",
-                        # "torque_penalty",
-                        # "thigh_torque_roll_yaw",
-                        # "thigh_roll_yaw_acc",
-                        # "dof_acc",
-                        # "dof_vel",
-                        # "action_rate",
-                        ]
-        regularization_scale = 1.0
-        regularization_scale_range = [0.8,2.0]
-        regularization_scale_curriculum = False
-        regularization_scale_gamma = 0.0001
         class scales:
-            tracking_joint_dof = 0.6
-            tracking_joint_vel = 0.2
-            tracking_root_pose = 0.6
-            tracking_root_vel = 1.0
-            # tracking_keybody_pos = 0.6
-            tracking_keybody_pos = 2.0
-            
             alive = 0.5
 
-            feet_slip = -0.1 # higher than teacher
-            feet_contact_forces = -5e-4      
-            # collision = -10.0
-            feet_stumble = -1.25
-            
-            dof_pos_limits = -5.0
-            dof_torque_limits = -1.0
-            
-            dof_vel = -1e-4
-            dof_acc = -5e-8
-            action_rate = -0.01
-            
-            feet_air_time = 5.0
-            
-            
-            ang_vel_xy = -0.01
-            # orientation = -0.4
-            
-            # base_acc = -5e-7
-            # orientation = -1.0
-            
-            # =========================
-            # waist_dof_acc = -5e-8 * 2
-            # waist_dof_vel = -1e-4 * 2
-            
-            ankle_dof_acc = -5e-8 * 2
-            ankle_dof_vel = -1e-4 * 2
-            
-            # ankle_action = -0.02
-            
-
-        min_dist = 0.1
-        max_dist = 0.4
-        max_knee_dist = 0.4
-        feet_height_target = 0.2
-        feet_air_time_target = 0.5
-        only_positive_rewards = False
-        tracking_sigma = 0.2
-        tracking_sigma_ang = 0.125
-        max_contact_force = 100  # Forces above this value are penalized
-        soft_torque_limit = 0.95
-        torque_safety_limit = 0.9
-        root_height_diff_threshold = 0.2
-
 class OrcaMimicPrivCfgPPO(HumanoidMimicCfgPPO):
-    seed = 1
+    seed = 42
     class runner(HumanoidMimicCfgPPO.runner):
         policy_class_name = 'ActorCriticMimic'
         algorithm_class_name = 'PPO'
         runner_class_name = 'OnPolicyRunnerMimic'
-        max_iterations = 1_000_002 # number of policy updates
+        max_iterations = 1_000_000 # number of policy updates
+        num_steps_per_env = 64 # per iteration
 
         # logging
         save_interval = 500 # check for potential saves every this many iterations
@@ -484,7 +374,7 @@ class OrcaMimicPrivCfgPPO(HumanoidMimicCfgPPO):
 
 
 class OrcaMimicStuRLCfgDAgger(OrcaMimicStuRLCfg):
-    seed = 1
+    seed = 42
     
     class teachercfg(OrcaMimicPrivCfgPPO):
         pass
@@ -493,7 +383,8 @@ class OrcaMimicStuRLCfgDAgger(OrcaMimicStuRLCfg):
         policy_class_name = 'ActorCriticMimic'
         algorithm_class_name = 'DaggerPPO'
         runner_class_name = 'OnPolicyDaggerRunner'
-        max_iterations = 1_000_002
+        max_iterations = 1_000_000 # number of policy updates
+        num_steps_per_env =  24 # per iteration
         warm_iters = 100
         
         # logging

@@ -40,7 +40,7 @@ import torch
 def train(args):
     args.headless = True
     
-    log_pth = LEGGED_GYM_ROOT_DIR + "/logs/{}/".format(args.proj_name) + args.exptid
+    log_pth = LEGGED_GYM_ROOT_DIR + "/logs/{}/".format(args.proj_name) + '-'.join([args.exptid, datetime.now().strftime("%Y%m%d_%H%M%S")])
     try:
         os.makedirs(log_pth)
     except:
@@ -50,7 +50,7 @@ def train(args):
         args.rows = 10
         args.cols = 5
         args.num_envs = 32
-        args.headless = False
+        # args.headless = False
     
     env, _ = task_registry.make_env(name=args.task, args=args)
     ppo_runner, train_cfg = task_registry.make_alg_runner(log_root=log_pth, env=env, name=args.task, args=args)

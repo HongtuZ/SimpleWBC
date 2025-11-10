@@ -3,7 +3,7 @@ from isaacgym.torch_utils import *
 import torch
 
 from legged_gym.envs.base.humanoid_mimic import HumanoidMimic
-from .orca_mimic_distill_config import OrcaMimicPrivCfg, OrcaMimicStuCfg
+from .orca_mimic_distill_config import OrcaMimicPrivCfg
 from legged_gym.gym_utils.math import *
 from pose.utils import torch_utils
 from legged_gym.envs.base.legged_robot import euler_from_quaternion
@@ -267,8 +267,8 @@ class OrcaMimicDistill(HumanoidMimic):
         dof_vel_start_dim = 5 + self.dof_pos.shape[1]
 
         # disable ankle dof
-        ankle_idx = [4, 5, 10, 11]
-        proprio_obs_buf[:, [dof_vel_start_dim + i for i in ankle_idx]] = 0.
+        # ankle_idx = [4, 5, 10, 11]
+        # proprio_obs_buf[:, [dof_vel_start_dim + i for i in ankle_idx]] = 0.
         
         key_body_pos = self.rigid_body_states[:, self._key_body_ids, :3]
         key_body_pos = key_body_pos - self.root_states[:, None, :3]
@@ -343,11 +343,11 @@ class OrcaMimicDistill(HumanoidMimic):
         return torch.sum(torch.square(self.dof_vel[:, waist_dof_idx]), dim=1)
     
     def _reward_ankle_dof_acc(self):
-        ankle_dof_idx = [4, 5, 10, 11]
+        ankle_dof_idx = [5, 11]
         return torch.sum(torch.square((self.last_dof_vel - self.dof_vel) / self.dt)[:, ankle_dof_idx], dim=1)
     
     def _reward_ankle_dof_vel(self):
-        ankle_dof_idx = [4, 5, 10, 11]
+        ankle_dof_idx = [5, 11]
         return torch.sum(torch.square(self.dof_vel[:, ankle_dof_idx]), dim=1)
     
     def _reward_ankle_action(self):

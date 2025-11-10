@@ -204,7 +204,6 @@ class HumanoidMimic(HumanoidChar):
         self.last_actions[env_ids] = 0.
         self.last_dof_vel[env_ids] = 0.
         self.last_torques[env_ids] = 0.
-        self.last_root_vel[:] = 0.
         self.feet_air_time[env_ids] = 0.
         self.reset_buf[env_ids] = 1
         self.obs_history_buf[env_ids, :, :] = 0.  # reset obs history buffer TODO no 0s
@@ -538,7 +537,6 @@ class HumanoidMimic(HumanoidChar):
             # tar_key_body_pos = convert_to_local_root_body_pos(self._ref_root_rot, tar_key_body_pos)
             tar_key_body_pos = convert_to_local_root_body_pos(ref_yaw_quat, tar_key_body_pos)
         key_body_pos_diff = key_body_pos - tar_key_body_pos
-        key_body_pos_diff = key_body_pos_diff[:,[1,2,4,5,7,8,10,11]]
         key_body_pos_err = torch.sum(key_body_pos_diff * key_body_pos_diff, dim=-1)
         key_body_pos_err = torch.sum(key_body_pos_err, dim=-1)
         
@@ -643,9 +641,6 @@ class HumanoidMimic(HumanoidChar):
     
     def _reward_dof_vel(self):
         return torch.sum(torch.square(self.dof_vel), dim=1)
-    
-    def _reward_base_acc(self):
-        return torch.sum(torch.square((self.last_root_vel - self.root_states[:, 7:13]) / self.dt), dim=1)
     
     def _reward_torque_penalty(self):
         return torch.sum(torch.square(self.torques), dim=1)

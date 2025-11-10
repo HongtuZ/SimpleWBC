@@ -69,8 +69,7 @@ def set_play_cfg(env_cfg):
 
 def play(args):
     faulthandler.enable()
-    # log_pth = "../../logs/{}/".format(args.proj_name) + args.exptid
-    log_pth = "/home/robot/hongtu/TWIST/legged_gym/logs/{}/".format(args.proj_name) + args.exptid
+    log_pth = "../../logs/{}/".format(args.proj_name) + args.exptid
 
     env_cfg, train_cfg = task_registry.get_cfgs(name=args.task)
 

@@ -50,6 +50,7 @@ from copy import copy, deepcopy
 import warnings
 # from rsl_rl.utils.running_mean_std import RunningMeanStd
 from rsl_rl.utils.normalizer import Normalizer
+import json
 
 class OnPolicyRunnerMimic:
 
@@ -170,6 +171,8 @@ class OnPolicyRunnerMimic:
         tot_iter = self.current_learning_iteration + num_learning_iterations
         self.start_learning_iteration = copy(self.current_learning_iteration)
 
+        best_average_episode_length = 0
+
         for it in range(self.current_learning_iteration, tot_iter):
             start = time.time()
             hist_encoding = it % self.dagger_update_freq == 0
@@ -235,6 +238,15 @@ class OnPolicyRunnerMimic:
             
             stop = time.time()
             learn_time = stop - start
+            if average_episode_length > best_average_episode_length: # and it > 100:
+                best_average_episode_length = average_episode_length
+                self.save(os.path.join(self.log_dir, 'best_model.pt'))
+                best_model_info = {
+                    'iteration': it,
+                    'average_episode_length': average_episode_length
+                }
+                with open(os.path.join(self.log_dir, 'best_model.json'), 'w') as f:
+                    json.dump(best_model_info, f, indent=2)
             if self.log_dir is not None:
                 self.log(locals())
             if it < 2500:

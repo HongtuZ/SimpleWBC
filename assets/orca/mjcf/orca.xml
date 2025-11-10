@@ -1,0 +1,313 @@
+<mujoco model="orca_ydescription">
+  <default>
+    <default class="robot">
+      <default class="motor">
+        <joint actuatorfrclimited="true" />
+        <motor />
+      </default>
+      <default class="visual">
+        <geom material="visualgeom" contype="0" conaffinity="0" group="1" />
+      </default>
+    </default>
+    <default class="collision">
+      <geom rgba="0.7 0.7 0.7 1" />
+    </default>
+  </default>
+
+  <compiler angle="radian" meshdir="../meshes/" eulerseq="zyx" discardvisual="false"/>
+  <option timestep="0.001" iterations="50" solver="PGS" gravity="0 0 -9.81">
+  </option>
+  <size njmax="500" nconmax="200" />  
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="1 1 1" rgb2="1 1 1" width="800" height="800"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="1 1 1" rgb2="1 1 1" markrgb="0 0 0"
+      width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0"/>
+    <material name="link" rgba="0.7 0.7 0.7 1" />
+    <mesh name="base_link_cls.STL" file="../meshes/base_link_cls.STL" />
+    <mesh name="base_link.STL" file="../meshes/base_link.STL" />
+    <mesh name="waist_yaw_link1_cls.STL" file="../meshes/waist_yaw_link1_cls.STL" />
+    <mesh name="waist_yaw_link1.STL" file="../meshes/waist_yaw_link1.STL" />
+    <mesh name="larm_link1_cls.STL" file="../meshes/larm_link1_cls.STL" />
+    <mesh name="larm_link1.STL" file="../meshes/larm_link1.STL" />
+    <mesh name="larm_link2_cls.STL" file="../meshes/larm_link2_cls.STL" />
+    <mesh name="larm_link2.STL" file="../meshes/larm_link2.STL" />
+    <mesh name="larm_link3_cls.STL" file="../meshes/larm_link3_cls.STL" />
+    <mesh name="larm_link3.STL" file="../meshes/larm_link3.STL" />
+    <mesh name="larm_link4_cls.STL" file="../meshes/larm_link4_cls.STL" />
+    <mesh name="larm_link4.STL" file="../meshes/larm_link4.STL" />
+    <mesh name="larm_link5_cls.STL" file="../meshes/larm_link5_cls.STL" />
+    <mesh name="larm_link5.STL" file="../meshes/larm_link5.STL" />
+    <mesh name="larm_link6_cls.STL" file="../meshes/larm_link6_cls.STL" />
+    <mesh name="larm_link6.STL" file="../meshes/larm_link6.STL" />
+    <mesh name="rarm_link1_cls.STL" file="../meshes/rarm_link1_cls.STL" />
+    <mesh name="rarm_link1.STL" file="../meshes/rarm_link1.STL" />
+    <mesh name="rarm_link2_cls.STL" file="../meshes/rarm_link2_cls.STL" />
+    <mesh name="rarm_link2.STL" file="../meshes/rarm_link2.STL" />
+    <mesh name="rarm_link3_cls.STL" file="../meshes/rarm_link3_cls.STL" />
+    <mesh name="rarm_link3.STL" file="../meshes/rarm_link3.STL" />
+    <mesh name="rarm_link4_cls.STL" file="../meshes/rarm_link4_cls.STL" />
+    <mesh name="rarm_link4.STL" file="../meshes/rarm_link4.STL" />
+    <mesh name="rarm_link5_cls.STL" file="../meshes/rarm_link5_cls.STL" />
+    <mesh name="rarm_link5.STL" file="../meshes/rarm_link5.STL" />
+    <mesh name="rarm_link6_cls.STL" file="../meshes/rarm_link6_cls.STL" />
+    <mesh name="rarm_link6.STL" file="../meshes/rarm_link6.STL" />
+    <mesh name="head_link1.STL" file="../meshes/head_link1.STL" />
+    <mesh name="head_link2.STL" file="../meshes/head_link2.STL" />
+    <mesh name="head_link3.STL" file="../meshes/head_link3.STL" />
+    <mesh name="lleg_link1_cls.STL" file="../meshes/lleg_link1_cls.STL" />
+    <mesh name="lleg_link1.STL" file="../meshes/lleg_link1.STL" />
+    <mesh name="lleg_link2_cls.STL" file="../meshes/lleg_link2_cls.STL" />
+    <mesh name="lleg_link2.STL" file="../meshes/lleg_link2.STL" />
+    <mesh name="lleg_link3_cls.STL" file="../meshes/lleg_link3_cls.STL" />
+    <mesh name="lleg_link3.STL" file="../meshes/lleg_link3.STL" />
+    <mesh name="lleg_link4_cls.STL" file="../meshes/lleg_link4_cls.STL" />
+    <mesh name="lleg_link4.STL" file="../meshes/lleg_link4.STL" />
+    <mesh name="lleg_link5_cls.STL" file="../meshes/lleg_link5_cls.STL" />
+    <mesh name="lleg_link5.STL" file="../meshes/lleg_link5.STL" />
+    <mesh name="lleg_link6_cls.STL" file="../meshes/lleg_link6_cls.STL" />
+    <mesh name="lleg_link6.STL" file="../meshes/lleg_link6.STL" />
+    <mesh name="rleg_link1_cls.STL" file="../meshes/rleg_link1_cls.STL" />
+    <mesh name="rleg_link1.STL" file="../meshes/rleg_link1.STL" />
+    <mesh name="rleg_link2_cls.STL" file="../meshes/rleg_link2_cls.STL" />
+    <mesh name="rleg_link2.STL" file="../meshes/rleg_link2.STL" />
+    <mesh name="rleg_link3_cls.STL" file="../meshes/rleg_link3_cls.STL" />
+    <mesh name="rleg_link3.STL" file="../meshes/rleg_link3.STL" />
+    <mesh name="rleg_link4_cls.STL" file="../meshes/rleg_link4_cls.STL" />
+    <mesh name="rleg_link4.STL" file="../meshes/rleg_link4.STL" />
+    <mesh name="rleg_link5_cls.STL" file="../meshes/rleg_link5_cls.STL" />
+    <mesh name="rleg_link5.STL" file="../meshes/rleg_link5.STL" />
+    <mesh name="rleg_link6_cls.STL" file="../meshes/rleg_link6_cls.STL" />
+    <mesh name="rleg_link6.STL" file="../meshes/rleg_link6.STL" />
+  </asset>
+
+  <worldbody>
+    <light diffuse=".5 .5 .5" pos="0 0 5" dir="0 0 -1" castshadow="true"/>
+    <geom name="floor" size="0 0 0.01" type="plane" material="groundplane" contype="1" conaffinity="0" priority="1" friction="0.6" condim="3"/>
+    <body name="base_link" pos="0.00000000 0.00000000 0.76972163" quat="1 0 0 0" childclass="robot">
+      <freejoint name="floating_base" />
+      <geom name="base_link_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="base_link_cls.STL" class="collision" />
+      <geom name="base_link_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="base_link.STL" class="visual" />
+      <site name='imu' size='0.01' pos='0.0 0 0.0'/>
+      <body name="waist_yaw_link1" pos="0 0 0.078" quat="0.4999999998974482 -0.5 -0.5000000001025517 0.5">
+        <joint name="waist_yaw_joint" type="hinge" ref="0.0" class="motor" range="-1.571 1.571" actuatorfrcrange="-36 36" axis="0 1 0" />
+        <inertial pos="-2.46E-05 -0.195013197 0.000228684" quat="1.0 0.0 0.0 0.0" mass="11.03319241" diaginertia="0.155358264 0.065422946 0.179385252" />
+        <geom name="waist_yaw_link1_collision" pos="0 0 0" quat="0.7070347681678408 -0.7071787868720665 0.0 0.0" type="mesh" mesh="waist_yaw_link1_cls.STL" class="collision" />
+        <geom name="waist_yaw_link1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="waist_yaw_link1.STL" class="visual" />
+        <body name="larm_link1" pos="0.134953079 -0.295908076 0" quat="0.45451947762389616 0.5416752203654408 0.4545194777171197 -0.5416752204765403">
+          <joint name="larm_joint1" type="hinge" ref="0.0" class="motor" range="-2.88 2.88" actuatorfrcrange="-90 90" axis="0 1 0" />
+          <inertial pos="0.000439855 0.035850183 7.91E-06" quat="1.0 0.0 0.0 0.0" mass="0.576081" diaginertia="0.000526742 0.000441561 0.00059525" />
+          <geom name="larm_link1_collision" pos="0 0 0" quat="0.7070347681678408 -0.7071787868720665 0.0 0.0" type="mesh" mesh="larm_link1_cls.STL" class="collision" />
+          <geom name="larm_link1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="larm_link1.STL" class="visual" />
+          <body name="larm_link2" pos="-0.0015 0.049998667 0" quat="0.45451947771711965 -0.5416752203654408 -0.5416752202900933 -0.45451947784609503">
+            <joint name="larm_joint2" type="hinge" ref="0.0" class="motor" range="-0.17 2.62" actuatorfrcrange="-36 36" axis="0 1 0" />
+            <inertial pos="-0.025633252 0.000250778 0.015716769" quat="1.0 0.0 0.0 0.0" mass="0.235909411" diaginertia="0.000407461 0.000283692 0.000496636" />
+            <geom name="larm_link2_collision" pos="0 0 0" quat="0.4998981633981524 -0.4999999896293064 -0.4999999896293064 -0.5001018366018476" type="mesh" mesh="larm_link2_cls.STL" class="collision" />
+            <geom name="larm_link2_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="larm_link2.STL" class="visual" />
+            <body name="larm_link3" pos="-0.0645 0 0.020001353" quat="0.7071067811140325 0.0 0.0 0.7071067812590626">
+              <joint name="larm_joint3" type="hinge" ref="0.0" class="motor" range="-2.79 2.79" actuatorfrcrange="-36 36" axis="0 1 0" />
+              <inertial pos="0.000500131 0.089700659 0.003086245" quat="1.0 0.0 0.0 0.0" mass="1.087367475" diaginertia="0.002488913 0.000722803 0.002308042" />
+              <geom name="larm_link3_collision" pos="0 0 0" quat="0.4998981633981524 -0.4999999896293064 -0.4999999896293064 -0.5001018366018476" type="mesh" mesh="larm_link3_cls.STL" class="collision" />
+              <geom name="larm_link3_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="larm_link3.STL" class="visual" />
+              <body name="larm_link4" pos="0 0.1835 0" quat="0.7071067811140325 0.7071067812590626 0.0 0.0">
+                <joint name="larm_joint4" type="hinge" ref="0.0" class="motor" range="-1.57 1.57" actuatorfrcrange="-36 36" axis="0 1 0" />
+                <inertial pos="0.001911713 0.010161859 -0.056077982" quat="1.0 0.0 0.0 0.0" mass="0.631589507" diaginertia="0.001429069 0.001379818 0.000967363" />
+                <geom name="larm_link4_collision" pos="0 0 0" quat="0.7070347681678408 0.7071787868720665 0.0 0.0" type="mesh" mesh="larm_link4_cls.STL" class="collision" />
+                <geom name="larm_link4_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="larm_link4.STL" class="visual" />
+                <body name="larm_link5" pos="0 0 -0.075" quat="0.4999999998974482 -0.5 -0.5 -0.5000000001025517">
+                  <joint name="larm_joint5" type="hinge" ref="0.0" class="motor" range="-0.35 1.57" actuatorfrcrange="-36 36" axis="0 1 0" />
+                  <inertial pos="-0.073159086 0.006187322 3.44E-06" quat="1.0 0.0 0.0 0.0" mass="0.451979036" diaginertia="0.000269516 0.000529737 0.000579657" />
+                  <geom name="larm_link5_collision" pos="0 0 0" quat="0.4998981633981524 -0.4999999896293064 -0.4999999896293064 -0.5001018366018476" type="mesh" mesh="larm_link5_cls.STL" class="collision" />
+                  <geom name="larm_link5_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="larm_link5.STL" class="visual" />
+                  <body name="larm_link6" pos="-0.105 0 0" quat="0.4999999998974482 0.5 -0.5 0.5000000001025517">
+                    <joint name="larm_joint6" type="hinge" ref="0.0" class="motor" range="-2.79 2.79" actuatorfrcrange="-36 36" axis="0 1 0" />
+                    <inertial pos="0.000892339 0.105967647 3.11E-05" quat="1.0 0.0 0.0 0.0" mass="0.830188707" diaginertia="0.002308313 0.000612406 0.002014112" />
+                    <geom name="larm_link6_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="larm_link6_cls.STL" class="collision" />
+                    <geom name="larm_link6_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="larm_link6.STL" class="visual" />
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+        <body name="rarm_link1" pos="-0.134953079 -0.295908076 0" quat="0.5416752202722173 0.45451947773499557 0.5416752203833168 -0.4545194778282191">
+          <joint name="rarm_joint1" type="hinge" ref="0.0" class="motor" range="-2.88 2.88" actuatorfrcrange="-90 90" axis="0 1 0" />
+          <inertial pos="0.000439873 -0.03585016 7.93E-06" quat="1.0 0.0 0.0 0.0" mass="0.576081148" diaginertia="0.000526742 0.000441561 0.000595249" />
+          <geom name="rarm_link1_collision" pos="0 0 0" quat="0.7070347681678408 0.7071787868720665 0.0 0.0" type="mesh" mesh="rarm_link1_cls.STL" class="collision" />
+          <geom name="rarm_link1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="rarm_link1.STL" class="visual" />
+          <body name="rarm_link2" pos="-0.0015 -0.049998667 0" quat="0.5416752202722173 -0.4545194778282191 -0.45451947773499557 -0.5416752203833168">
+            <joint name="rarm_joint2" type="hinge" ref="0.0" class="motor" range="-0.17 2.62" actuatorfrcrange="-36 36" axis="0 -1 0" />
+            <inertial pos="-0.02563088 0.000253501 -0.015720954" quat="1.0 0.0 0.0 0.0" mass="0.235938732" diaginertia="0.000407458 0.000283649 0.000496642" />
+            <geom name="rarm_link2_collision" pos="0 0 0" quat="0.4998981633981524 -0.4999999896293064 -0.4999999896293064 -0.5001018366018476" type="mesh" mesh="rarm_link2_cls.STL" class="collision" />
+            <geom name="rarm_link2_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="rarm_link2.STL" class="visual" />
+            <body name="rarm_link3" pos="-0.0645 0 -0.020001353" quat="0.7071067811140325 0.0 0.0 0.7071067812590626">
+              <joint name="rarm_joint3" type="hinge" ref="0.0" class="motor" range="-2.79 2.79" actuatorfrcrange="-36 36" axis="0 1 0" />
+              <inertial pos="0.000500342 0.089701323 -0.003086662" quat="1.0 0.0 0.0 0.0" mass="1.087374142" diaginertia="0.002488887 0.000722818 0.002308041" />
+              <geom name="rarm_link3_collision" pos="0 0 0" quat="0.4998981633981524 -0.4999999896293064 -0.4999999896293064 -0.5001018366018476" type="mesh" mesh="rarm_link3_cls.STL" class="collision" />
+              <geom name="rarm_link3_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="rarm_link3.STL" class="visual" />
+              <body name="rarm_link4" pos="0 0.1835 0" quat="0.7071067811140325 0.7071067812590626 0.0 0.0">
+                <joint name="rarm_joint4" type="hinge" ref="0.0" class="motor" range="-1.57 1.57" actuatorfrcrange="-36 36" axis="0 1 0" />
+                <inertial pos="0.001908352 -0.010158385 -0.056080165" quat="1.0 0.0 0.0 0.0" mass="0.631620451" diaginertia="0.001429094 0.00137982 0.000967415" />
+                <geom name="rarm_link4_collision" pos="0 0 0" quat="0.7070347681678408 0.7071787868720665 0.0 0.0" type="mesh" mesh="rarm_link4_cls.STL" class="collision" />
+                <geom name="rarm_link4_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="rarm_link4.STL" class="visual" />
+                <body name="rarm_link5" pos="0 0 -0.075" quat="0.4999999998974482 -0.5 -0.5 -0.5000000001025517">
+                  <joint name="rarm_joint5" type="hinge" ref="0.0" class="motor" range="-0.35 1.57" actuatorfrcrange="-36 36" axis="0 1 0" />
+                  <inertial pos="-0.073159111 0.006187367 -3.6E-06" quat="1.0 0.0 0.0 0.0" mass="0.451977745" diaginertia="0.000269514 0.00052974 0.000579657" />
+                  <geom name="rarm_link5_collision" pos="0 0 0" quat="0.4998981633981524 -0.4999999896293064 -0.4999999896293064 -0.5001018366018476" type="mesh" mesh="rarm_link5_cls.STL" class="collision" />
+                  <geom name="rarm_link5_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="rarm_link5.STL" class="visual" />
+                  <body name="rarm_link6" pos="-0.105 0 0" quat="0.4999999998974482 0.5 -0.5 0.5000000001025517">
+                    <joint name="rarm_joint6" type="hinge" ref="0.0" class="motor" range="-2.79 2.79" actuatorfrcrange="-36 36" axis="0 1 0" />
+                    <inertial pos="-0.000892336 0.105967653 3.1E-05" quat="1.0 0.0 0.0 0.0" mass="0.830188258" diaginertia="0.002308314 0.000612406 0.002014112" />
+                    <geom name="rarm_link6_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rarm_link6_cls.STL" class="collision" />
+                    <geom name="rarm_link6_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="rarm_link6.STL" class="visual" />
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+        <body name="head_link1" pos="0 -0.4656 -0.0086" quat="0.4998981633981524 -0.4999999896293064 -0.4999999896293064 -0.5001018366018476">
+          <joint name="head_joint1" type="hinge" ref="0.0" class="motor" range="-0.349 0.349" actuatorfrcrange="-3 3" axis="1 0 0" />
+          <inertial pos="0 0 0" quat="1.0 0.0 0.0 0.0" mass="0.000534071" diaginertia="5.34e-09 5.34e-09 5.34e-09" />
+          <geom name="head_link1_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="head_link1.STL" class="collision" />
+          <geom name="head_link1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="head_link1.STL" class="visual" />
+          <body name="head_link2" pos="0 0 0" quat="0.7071067811865406 6.811340229101459e-05 -0.7071067779059781 7.251504952066057e-11">
+            <joint name="head_joint2" type="hinge" ref="0.0" class="motor" range="-0.349 0.349" actuatorfrcrange="-3 3" axis="0 1 0" />
+            <inertial pos="1.11E-16 2.43E-17 0" quat="1.0 0.0 0.0 0.0" mass="0.000534071" diaginertia="5.34e-09 5.34e-09 5.34e-09" />
+            <geom name="head_link2_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="head_link2.STL" class="collision" />
+            <geom name="head_link2_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="head_link2.STL" class="visual" />
+            <body name="head_link3" pos="0 0 0" quat="-0.0001440187034640799 0.7071067664476569 0.00014401870349361863 0.707106766592687">
+              <joint name="head_joint3" type="hinge" ref="0.0" class="motor" range="-0.523 0.349" actuatorfrcrange="-3 3" axis="0 0 1" />
+              <inertial pos="-0.000672526 -8.45E-05 0.04525922" quat="1.0 0.0 0.0 0.0" mass="0.960823777" diaginertia="0.004598234 0.002226063 0.004802875" />
+              <geom name="head_link3_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="head_link3.STL" class="collision" />
+              <geom name="head_link3_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="head_link3.STL" class="visual" />
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="lleg_link1" pos="0 0.125 0" quat="1.0 0.0 0.0 0.0">
+        <joint name="lleg_joint1" type="hinge" ref="0.0" class="motor" range="-1.22 1.92" actuatorfrcrange="-150 150" axis="0 -1 0" />
+        <inertial pos="-0.0414231544911224 -0.00514312296824225 -0.0912263689528675" quat="1.0 0.0 0.0 0.0" mass="1.86152386862835" diaginertia="0.00788495380545202 0.0134626686367762 0.00858048562013347" />
+        <geom name="lleg_link1_collision" pos="0 0 0" quat="0.7070347681678408 -0.7071787868720665 0.0 0.0" type="mesh" mesh="lleg_link1_cls.STL" class="collision" />
+        <geom name="lleg_link1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="lleg_link1.STL" class="visual" />
+        <body name="lleg_link2" pos="0 0 -0.1415" quat="0.4999999998974482 -0.5 -0.5 -0.5000000001025517">
+          <joint name="lleg_joint2" type="hinge" ref="0.0" class="motor" range="-1.57 0.26" actuatorfrcrange="-90 90" axis="0 -1 0" />
+          <inertial pos="-0.006954122 -0.00602969 5.86E-06" quat="1.0 0.0 0.0 0.0" mass="1.300432803" diaginertia="0.002954606 0.001657068 0.002286791" />
+          <geom name="lleg_link2_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="lleg_link2_cls.STL" class="collision" />
+          <geom name="lleg_link2_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="lleg_link2.STL" class="visual" />
+          <body name="lleg_link3" pos="-0.0275 0 0" quat="0.7071067811140325 0.0 0.0 0.7071067812590626">
+            <joint name="lleg_joint3" type="hinge" ref="0.0" class="motor" range="-2.6 0.44" actuatorfrcrange="-90 90" axis="0 1 0" />
+            <inertial pos="-0.003193462 0.118677095 0.011628846" quat="1.0 0.0 0.0 0.0" mass="3.1861688" diaginertia="0.017966441 0.007797636 0.018560511" />
+            <geom name="lleg_link3_collision" pos="0 0 0" quat="0.7070347681678408 -0.7071787868720665 0.0 0.0" type="mesh" mesh="lleg_link3_cls.STL" class="collision" />
+            <geom name="lleg_link3_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="lleg_link3.STL" class="visual" />
+            <body name="lleg_link4" pos="0 0.267721631 0" quat="0.7071067811140325 0.7071067812590626 0.0 0.0">
+              <joint name="lleg_joint4" type="hinge" ref="0.0" class="motor" range="-2.093 0.614" actuatorfrcrange="-150 150" axis="0 -1 0" />
+              <inertial pos="-0.00152225065184456 0.00361293636958301 -0.132559591969628" quat="1.0 0.0 0.0 0.0" mass="1.83999293748654" diaginertia="0.0108841825322086 0.0107317521963956 0.00187312853479281" />
+              <geom name="lleg_link4_collision" pos="0 0 0" quat="0.0005633121735972125 0.0005628637715330792 0.7068249569936026 0.707388044876899" type="mesh" mesh="lleg_link4_cls.STL" class="collision" />
+              <geom name="lleg_link4_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="lleg_link4.STL" class="visual" />
+              <body name="lleg_link5" pos="0 -0.00899999999999999 -0.262" quat="1.0 0.0 0.0 0.0">
+                <joint name="lleg_joint5" type="hinge" ref="0.0" class="motor" range="-1.57 1.57" actuatorfrcrange="-60 60" axis="0 -1 0" />
+                <inertial pos="-0.0116562233297665 -6.36324763887697E-09 -0.0639780361362227" quat="1.0 0.0 0.0 0.0" mass="0.815248914632693" diaginertia="0.00082295416547413 0.000796113865945101 0.000672385880513338" />
+                <geom name="lleg_link5_collision" pos="0 0 0" quat="0.5003981633553667 0.49999984146591736 0.49960183664463337 0.49999984146591736" type="mesh" mesh="lleg_link5_cls.STL" class="collision" />
+                <geom name="lleg_link5_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="lleg_link5.STL" class="visual" />
+                <body name="lleg_link6" pos="0.0105 0 -0.0710000000000001" quat="1.0 0.0 0.0 0.0">
+                  <joint name="lleg_joint6" type="hinge" ref="0.0" class="motor" range="-0.61 0.61" actuatorfrcrange="-36 36" axis="1 0 0" />
+                  <inertial pos="0.0329782831091455 -0.00171847078047017 -0.0558702414044165" quat="1.0 0.0 0.0 0.0" mass="0.434267885629283" diaginertia="0.000334685855038701 0.00201538958940841 0.0021371210371888" />
+                  <geom name="lleg_link6_collision" pos="0 0 0" quat="0.5003981633553667 0.49999984146591736 0.49960183664463337 0.49999984146591736" type="mesh" mesh="lleg_link6_cls.STL" class="collision" />
+                  <geom name="lleg_link6_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="lleg_link6.STL" class="visual" />
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="rleg_link1" pos="0 -0.125 0" quat="1.0 0.0 0.0 0.0">
+        <joint name="rleg_joint1" type="hinge" ref="0.0" class="motor" range="-1.22 1.92" actuatorfrcrange="-150 150" axis="0 -1 0" />
+        <inertial pos="-0.041423 0.0051432 -0.091227" quat="1.0 0.0 0.0 0.0" mass="1.8615" diaginertia="0.007885 0.013463 0.0085805" />
+        <geom name="rleg_link1_collision" pos="0 0 0" quat="-2.597083718677575e-06 -2.597612728916914e-06 0.707034768163071 -0.7071787868672956" type="mesh" mesh="rleg_link1_cls.STL" class="collision" />
+        <geom name="rleg_link1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="rleg_link1.STL" class="visual" />
+        <body name="rleg_link2" pos="0 0 -0.1415" quat="0.4999999998974482 -0.5 -0.5 -0.5000000001025517">
+          <joint name="rleg_joint2" type="hinge" ref="0.0" class="motor" range="-1.57 0.26" actuatorfrcrange="-90 90" axis="0 1 0" />
+          <inertial pos="0.006046 0.0038573 -5.86E-06" quat="1.0 0.0 0.0 0.0" mass="1.3004" diaginertia="0.0029546 0.001657 0.0022868" />
+          <geom name="rleg_link2_collision" pos="0 0 0" quat="-3.673205103346574e-06 -0.0 0.9999999999932537 -0.0" type="mesh" mesh="rleg_link2_cls.STL" class="collision" />
+          <geom name="rleg_link2_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="rleg_link2.STL" class="visual" />
+          <body name="rleg_link3" pos="-0.0275 0 0" quat="0.7071067811140325 0.0 0.0 0.7071067812590626">
+            <joint name="rleg_joint3" type="hinge" ref="0.0" class="motor" range="-2.6 0.44" actuatorfrcrange="-90 90" axis="0 -1 0" />
+            <inertial pos="-0.003193895 0.118677583 0.011629722" quat="1.0 0.0 0.0 0.0" mass="3.186287653" diaginertia="0.017966915 0.007797823 0.018561129" />
+            <geom name="rleg_link3_collision" pos="0 0 0" quat="-2.597083718677575e-06 2.597612728916914e-06 0.707034768163071 0.7071787868672956" type="mesh" mesh="rleg_link3_cls.STL" class="collision" />
+            <geom name="rleg_link3_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="rleg_link3.STL" class="visual" />
+            <body name="rleg_link4" pos="0 0.267721631 0" quat="0.7070347681678408 0.7071787868720665 0.0 0.0">
+              <joint name="rleg_joint4" type="hinge" ref="0.0" class="motor" range="-2.093 0.614"  actuatorfrcrange="-150 150" axis="0 -1 0" />
+              <inertial pos="-0.00152224198898753 -0.00361293807887636 -0.132559598337074" quat="1.0 0.0 0.0 0.0" mass="1.83999283796375" diaginertia="0.0108841810313571 0.0107317506544257 0.00187312795377983" />
+              <geom name="rleg_link4_collision" pos="0 0 0" quat="0.0005633121735972125 0.0005628637715330792 0.7068249569936026 0.707388044876899" type="mesh" mesh="rleg_link4_cls.STL" class="collision" />
+              <geom name="rleg_link4_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="rleg_link4.STL" class="visual" />
+              <body name="rleg_link5" pos="0 0.009 -0.262" quat="1.0 0.0 0.0 0.0">
+                <joint name="rleg_joint5" type="hinge" ref="0.0" class="motor" range="-1.57 1.57" actuatorfrcrange="-60 60" axis="0 -1 0" />
+                <inertial pos="-0.011656 -6.3716E-09 -0.063978" quat="1.0 0.0 0.0 0.0" mass="0.81525" diaginertia="0.00082295 0.00079611 0.00067239" />
+                <geom name="rleg_link5_collision" pos="0 0 0" quat="0.5003981633553667 0.49999984146591736 0.49960183664463337 0.49999984146591736" type="mesh" mesh="rleg_link5_cls.STL" class="collision" />
+                <geom name="rleg_link5_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="rleg_link5.STL" class="visual" />
+                <body name="rleg_link6" pos="0.0105 0 -0.071" quat="1.0 0.0 0.0 0.0">
+                  <joint name="rleg_joint6" type="hinge" ref="0.0" class="motor" range="-0.61 0.61"  actuatorfrcrange="-36 36" axis="1 0 0" />
+                  <inertial pos="0.0329972527999862 0.00171980256045553 -0.0558710536369997" quat="1.0 0.0 0.0 0.0" mass="0.434289966675498" diaginertia="0.000334748816151449 0.00201586715973069 0.00213763863113348" />
+                  <geom name="rleg_link6_collision" pos="0 0 0" quat="0.5003981633553667 0.49999984146591736 0.49960183664463337 0.49999984146591736" type="mesh" mesh="rleg_link6_cls.STL" class="collision" />
+                  <geom name="rleg_link6_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="link" type="mesh" mesh="rleg_link6.STL" class="visual" />
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <site name="base_link_site" pos="0 0 0" quat="1 0 0 0" />
+      <camera name="front_camera" mode="track" fovy="90.0" quat="4.329780281177467e-17 4.329780281177466e-17 0.7071067811865475 0.7071067811865476" pos="0.0 2.0 0.5" />
+      <camera name="side_camera" mode="track" fovy="90.0" quat="-0.5 -0.4999999999999999 0.5 0.5000000000000001" pos="-2.0 0.0 0.5" />
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="waist_yaw_joint_ctrl" joint="waist_yaw_joint" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+    <motor name="larm_joint1_ctrl" joint="larm_joint1" class="motor" gear="1" ctrllimited="true" ctrlrange="-90 90"/>
+    <motor name="larm_joint2_ctrl" joint="larm_joint2" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+    <motor name="larm_joint3_ctrl" joint="larm_joint3" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+    <motor name="larm_joint4_ctrl" joint="larm_joint4" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+    <motor name="larm_joint5_ctrl" joint="larm_joint5" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+    <motor name="larm_joint6_ctrl" joint="larm_joint6" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+    <motor name="rarm_joint1_ctrl" joint="rarm_joint1" class="motor" gear="1" ctrllimited="true" ctrlrange="-90 90"/>
+    <motor name="rarm_joint2_ctrl" joint="rarm_joint2" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+    <motor name="rarm_joint3_ctrl" joint="rarm_joint3" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+    <motor name="rarm_joint4_ctrl" joint="rarm_joint4" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+    <motor name="rarm_joint5_ctrl" joint="rarm_joint5" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+    <motor name="rarm_joint6_ctrl" joint="rarm_joint6" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+    <motor name="head_joint1_ctrl" joint="head_joint1" class="motor" gear="1" ctrllimited="true" ctrlrange="-3 3"/>
+    <motor name="head_joint2_ctrl" joint="head_joint2" class="motor" gear="1" ctrllimited="true" ctrlrange="-3 3"/>
+    <motor name="head_joint3_ctrl" joint="head_joint3" class="motor" gear="1" ctrllimited="true" ctrlrange="-3 3"/>
+    <motor name="lleg_joint1_ctrl" joint="lleg_joint1" class="motor" gear="1" ctrllimited="true" ctrlrange="-150 150"/>
+    <motor name="lleg_joint2_ctrl" joint="lleg_joint2" class="motor" gear="1" ctrllimited="true" ctrlrange="-90 90"/>
+    <motor name="lleg_joint3_ctrl" joint="lleg_joint3" class="motor" gear="1" ctrllimited="true" ctrlrange="-90 90"/>
+    <motor name="lleg_joint4_ctrl" joint="lleg_joint4" class="motor" gear="1" ctrllimited="true" ctrlrange="-150 150"/>
+    <motor name="lleg_joint5_ctrl" joint="lleg_joint5" class="motor" gear="1" ctrllimited="true" ctrlrange="-60 60"/>
+    <motor name="lleg_joint6_ctrl" joint="lleg_joint6" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+    <motor name="rleg_joint1_ctrl" joint="rleg_joint1" class="motor" gear="1" ctrllimited="true" ctrlrange="-150 150"/>
+    <motor name="rleg_joint2_ctrl" joint="rleg_joint2" class="motor" gear="1" ctrllimited="true" ctrlrange="-90 90"/>
+    <motor name="rleg_joint3_ctrl" joint="rleg_joint3" class="motor" gear="1" ctrllimited="true" ctrlrange="-90 90"/>
+    <motor name="rleg_joint4_ctrl" joint="rleg_joint4" class="motor" gear="1" ctrllimited="true" ctrlrange="-150 150"/>
+    <motor name="rleg_joint5_ctrl" joint="rleg_joint5" class="motor" gear="1" ctrllimited="true" ctrlrange="-60 60"/>
+    <motor name="rleg_joint6_ctrl" joint="rleg_joint6" class="motor" gear="1" ctrllimited="true" ctrlrange="-36 36"/>
+  </actuator>
+
+  <sensor>
+    <framequat     name='orientation' objtype='site' objname='imu'/>
+    <framepos      name='position' objtype='site' objname='imu'/>
+    <gyro          name='angular-velocity'    site='imu' cutoff='34.9'/>
+    <velocimeter   name='linear-velocity'     site='imu' cutoff='30'/>
+    <accelerometer name='linear-acceleration' site='imu' cutoff='157'/>
+    <magnetometer  name='magnetometer'        site='imu'/>
+  </sensor>
+  <statistic center="1.0 0.7 1.0" extent="0.8"/>
+  <visual>
+    <headlight diffuse=".8 .8 .8" ambient=".2 .2 .2" specular="1 1 1"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="-140" elevation="-20"/>
+  </visual>
+
+</mujoco>
