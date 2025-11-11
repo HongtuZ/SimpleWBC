@@ -35,7 +35,7 @@ body_models/
 
 joao_data/
 
-motion_dataset/
+retargeted_data/
 test.py
 
 .DS_Store

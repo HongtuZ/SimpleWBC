@@ -328,11 +328,6 @@ class OrcaMimicStuRLCfg(OrcaMimicPrivCfg):
         n_obs_single = n_mimic_obs + n_proprio
         num_observations = n_obs_single * (history_len + 1)
 
-    
-    class rewards(HumanoidMimicCfg.rewards):
-        class scales:
-            alive = 0.5
-
 class OrcaMimicPrivCfgPPO(HumanoidMimicCfgPPO):
     seed = 42
     class runner(HumanoidMimicCfgPPO.runner):
